@@ -9,15 +9,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
-
     #[Route('/', name: 'app_index')]
     public function index(ApiData $apiData,): Response
     {
         // get data from API
         $closures = $apiData->getClosuresData();
+        $closuresReason = $apiData->getClosuresReasonData();
 
         return $this->render('api/index.html.twig', [
             'closures' => $closures,
+            'closuresReason' => $closuresReason
         ]);
     }
 }
