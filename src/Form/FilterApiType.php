@@ -19,7 +19,7 @@ class FilterApiType extends AbstractType
                 'choice_label' => function ($choice, $closuresReasons, $value) {
                     return $value;
                 },
-                'placeholder' => 'Choisissez une raison',
+                'placeholder' => 'Voir toutes les raisons',
                 'label' => 'Raison de fermeture :',
             ])
             ->add('date', DateType::class, ['required'=>false,

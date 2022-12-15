@@ -21,6 +21,8 @@
                 <p>Raison de la fermeture : bateau "{{ closure.bateau }}"</p>
             {% endif %}
         </div>
+    {% else %}
+        <p>Aucune fermeture n'est prévue selon ces critères</p>
     {% endfor %}
 
 {% endblock %}
