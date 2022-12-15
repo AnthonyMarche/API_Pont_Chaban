@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fermetures Pont Chaban{% endblock %}
+
+{% block body %}
+    {% for closure in closures %}
+        <div>
+            <h2>{{ closure.date_passage }}</h2>
+
+            <p>Fermeture de la circulation de : {{ closure.fermeture_a_la_circulation }}</p>
+            <p>Réouverture à la circulation à : {{ closure.re_ouverture_a_la_circulation }}</p>
+            {% if closure.bateau == "MAINTENANCE" %}
+                <p>Raison de la fermeture : {{ closure.bateau }}</p>
+            {% else %}
+                <p>Raison de la fermeture : bateau "{{ closure.bateau }}"</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
