@@ -50,9 +50,38 @@ class ApiData
 
         // change date format foreach closure
         foreach ($closures as &$closure) {
-            $closure['date_passage'] = date('d-m-Y', strtotime($closure['date_passage']));
+            $closure['date_passage'] = date('d/m/Y', strtotime($closure['date_passage']));
         }
 
         return $closures;
+    }
+
+    // get all reason to closure from a specific day
+    public function getClosuresReasonData(): array
+    {
+        $content = $this->getApiData();
+
+        // define start day
+        $today = '2022-09-01';
+
+        $closuresReason = [];
+
+        // get only closures data from api start on $today
+        foreach ($content['records'] as $closuresData) {
+            if ($closuresData['fields']['date_passage'] > $today) {
+
+                // get all reasons to closure
+                $closuresReasonList = explode('/', $closuresData['fields']['bateau']);
+                foreach ($closuresReasonList as $closureReasonValue) {
+                    $closuresReason[] = trim($closureReasonValue);
+                }
+            }
+        }
+
+        // treatment to get only unique reason et order by asc
+        $closuresReason = array_unique($closuresReason);
+        sort($closuresReason);
+
+        return $closuresReason;
     }
 }

@@ -3,6 +3,12 @@
 {% block title %}Fermetures Pont Chaban{% endblock %}
 
 {% block body %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit">Valider</button>
+    {{ form_end(form) }}
+
     {% for closure in closures %}
         <div>
             <h2>{{ closure.date_passage }}</h2>
@@ -15,7 +21,8 @@
                 <p>Raison de la fermeture : bateau "{{ closure.bateau }}"</p>
             {% endif %}
         </div>
+    {% else %}
+        <p>Aucune fermeture n'est prévue selon ces critères</p>
     {% endfor %}
-
 
 {% endblock %}
