@@ -4,14 +4,17 @@
 
 {% block body %}
 
+    <h2>Nous sommes le {{ today }}</h2>
+
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <button type="submit">Valider</button>
     {{ form_end(form) }}
 
     {% for closure in closures %}
+
         <div>
-            <h2>{{ closure.date_passage }}</h2>
+            <h3>{{ closure.date_passage }}</h3>
 
             <p>Fermeture de la circulation de : {{ closure.fermeture_a_la_circulation }}</p>
             <p>Réouverture à la circulation à : {{ closure.re_ouverture_a_la_circulation }}</p>
@@ -21,6 +24,7 @@
                 <p>Raison de la fermeture : bateau "{{ closure.bateau }}"</p>
             {% endif %}
         </div>
+
     {% else %}
         <p>Aucune fermeture n'est prévue selon ces critères</p>
     {% endfor %}
