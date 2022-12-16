@@ -7,6 +7,15 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class ApiData
 {
     private HttpClientInterface $client;
+    private string $today = '2022-09-01';
+
+    /**
+     * @return string
+     */
+    public function getToday(): string
+    {
+        return $this->today;
+    }
 
     public function __construct(HttpClientInterface $client)
     {
@@ -31,14 +40,11 @@ class ApiData
     {
         $content = $this->getApiData();
 
-        // define start day
-        $today = '2022-09-01';
-
         $closures = [];
 
         // get only closures data from api start on $today
         foreach ($content['records'] as $closeData) {
-            if ($closeData['fields']['date_passage'] > $today) {
+            if ($closeData['fields']['date_passage'] > $this->today) {
                 $closures[] = $closeData['fields'];
             }
         }
@@ -61,14 +67,11 @@ class ApiData
     {
         $content = $this->getApiData();
 
-        // define start day
-        $today = '2022-09-01';
-
         $closuresReason = [];
 
         // get only closures data from api start on $today
         foreach ($content['records'] as $closuresData) {
-            if ($closuresData['fields']['date_passage'] > $today) {
+            if ($closuresData['fields']['date_passage'] > $this->today) {
 
                 // get all reasons to closure
                 $closuresReasonList = explode('/', $closuresData['fields']['bateau']);
