@@ -7,7 +7,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class ApiData
 {
     private HttpClientInterface $client;
-    private string $today = '2022-09-01';
+    private string $today = '2022-09-15';
 
     /**
      * @return string
@@ -53,13 +53,54 @@ class ApiData
         array_multisort(array_column($closures, "date_passage"),
             array_column($closures, "fermeture_a_la_circulation"),
             $closures);
-
         // change date format foreach closure
         foreach ($closures as &$closure) {
-            $closure['date_passage'] = date('d/m/Y', strtotime($closure['date_passage']));
+            $closure['date_reformat'] = date('d/m/Y', strtotime($closure['date_passage']));
         }
 
         return $closures;
+    }
+
+    public function sortByMonth(): array
+    {
+        $closures = $this->getClosuresData();
+
+        $closuresByMonth = [];
+
+        // sort closure data by month
+        foreach ($closures as $closure) {
+            $month = date('m', strtotime($closure['date_passage']));
+            if (!isset($closuresByMonth[$month])) {
+                $closuresByMonth[$month] = [];
+            }
+            $closuresByMonth[$month][] = $closure;
+        }
+
+        // define key => French month name
+        $monthNames = [
+            '01' => 'Janvier',
+            '02' => 'Février',
+            '03' => 'Mars',
+            '04' => 'Avril',
+            '05' => 'Mai',
+            '06' => 'Juin',
+            '07' => 'Juillet',
+            '08' => 'Août',
+            '09' => 'Septembre',
+            '10' => 'Octobre',
+            '11' => 'Novembre',
+            '12' => 'Décembre'
+        ];
+
+        // Replace the month numbers with their French name
+        foreach ($closuresByMonth as $month => $monthClosures) {
+            if (isset($monthNames[$month])) {
+                $closuresByMonth[$monthNames[$month]] = $monthClosures;
+                unset($closuresByMonth[$month]);
+            }
+        }
+
+        return $closuresByMonth;
     }
 
     // get all reason to closure from a specific day

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\Service\ApiData;
-use App\Controller\Service\ApiTreatment;
+use App\Controller\Service\ApiFormTreatment;
 use App\Form\FilterApiType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,13 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(Request $request, ApiData $apiData, ApiTreatment $apiTreatment): Response
+    public function index(Request $request, ApiData $apiData, ApiFormTreatment $apiFormTreatment): Response
     {
         // get date today
         $today = date('d/m/Y', strtotime($apiData->getToday()));
 
         // get data from API
-        $closures = $apiData->getClosuresData();
+        $closuresByMonth = $apiData->sortByMonth();
         $closuresReason = $apiData->getClosuresReasonData();
 
         // Create form from FilterApiType
@@ -30,12 +30,12 @@ class ApiController extends AbstractController
 
         // get data filter by reason selected
         if ($form->isSubmitted() && $form->isValid()) {
-            $closures = $apiTreatment->treatmentFilterForm($form->getData(), $closures);
+            $closuresByMonth = $apiFormTreatment->treatmentFilterForm($form->getData(), $closuresByMonth);
         }
 
         return $this->render('api/index.html.twig', [
             'today' => $today,
-            'closures' => $closures,
+            'closuresByMonth' => $closuresByMonth,
             'form' => $form->createView(),
             'closuresReason' => $closuresReason
         ]);
