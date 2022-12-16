@@ -11,22 +11,24 @@
     <button type="submit">Valider</button>
     {{ form_end(form) }}
 
-    {% for closure in closures %}
+    {% for month, closuresInMonth in closuresByMonth %}
+        <h2>Fermetures du mois de {{ month }}</h2>
 
-        <div>
-            <h3>{{ closure.date_passage }}</h3>
+        {% for closure in closuresInMonth %}
+            <div>
+                <h3>{{ closure.date_reformat }}</h3>
 
-            <p>Fermeture de la circulation de : {{ closure.fermeture_a_la_circulation }}</p>
-            <p>Réouverture à la circulation à : {{ closure.re_ouverture_a_la_circulation }}</p>
-            {% if closure.bateau == "MAINTENANCE" %}
-                <p>Raison de la fermeture : {{ closure.bateau }}</p>
-            {% else %}
-                <p>Raison de la fermeture : bateau "{{ closure.bateau }}"</p>
-            {% endif %}
-        </div>
-
-    {% else %}
-        <p>Aucune fermeture n'est prévue selon ces critères</p>
+                <p>Fermeture de la circulation de : {{ closure.fermeture_a_la_circulation }}</p>
+                <p>Réouverture à la circulation à : {{ closure.re_ouverture_a_la_circulation }}</p>
+                {% if closure.bateau == "MAINTENANCE" %}
+                    <p>Raison de la fermeture : {{ closure.bateau }}</p>
+                {% else %}
+                    <p>Raison de la fermeture : bateau "{{ closure.bateau }}"</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>Aucune fermeture n'est prévue selon ces critères</p>
+        {% endfor %}
     {% endfor %}
 
 {% endblock %}
