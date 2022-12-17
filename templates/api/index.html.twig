@@ -4,12 +4,21 @@
 
 {% block body %}
 
-    <h2>Nous sommes le {{ today }}</h2>
+    <h2>Date du jour : {{ today }}</h2>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Valider</button>
-    {{ form_end(form) }}
+    <div class="mx-auto pb-3" style="width: 500px;">
+        {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+        {{ form_label(form.reason, 'Raison de fermeture :', {'label_attr': {'class': 'sr-only'}}) }}
+        {{ form_widget(form.reason, {'attr': {'class': 'form-control mb-2 mr-sm-2'}}) }}
+
+        {{ form_label(form.date, 'Date :', {'label_attr': {'class': 'sr-only'}}) }}
+        <div class="input-group mb-2 mr-sm-2">
+            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-secondary mb-2">Submit</button>
+        {{ form_end(form) }}
+    </div>
 
     {% for month, closuresInMonth in closuresByMonth %}
         <h2>Fermetures du mois de {{ month }}</h2>

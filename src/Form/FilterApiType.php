@@ -14,7 +14,8 @@ class FilterApiType extends AbstractType
         $closuresReasons = $options['data'];
 
         $builder
-            ->add('reason', ChoiceType::class, ['required'=>false,
+            ->add('reason', ChoiceType::class, [
+                'required' => false,
                 'choices' => $closuresReasons,
                 'choice_label' => function ($choice, $closuresReasons, $value) {
                     return $value;
@@ -22,7 +23,8 @@ class FilterApiType extends AbstractType
                 'placeholder' => 'Voir toutes les raisons',
                 'label' => 'Raison de fermeture :',
             ])
-            ->add('date', DateType::class, ['required'=>false,
+            ->add('date', DateType::class, [
+                'required' => false,
                 'widget' => 'single_text',
                 'label' => 'Date :',
             ]);
