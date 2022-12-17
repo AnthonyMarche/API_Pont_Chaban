@@ -78,18 +78,18 @@ class ApiData
 
         // define key => French month name
         $monthNames = [
-            '01' => 'Janvier',
-            '02' => 'Février',
-            '03' => 'Mars',
-            '04' => 'Avril',
-            '05' => 'Mai',
-            '06' => 'Juin',
-            '07' => 'Juillet',
-            '08' => 'Août',
-            '09' => 'Septembre',
-            '10' => 'Octobre',
-            '11' => 'Novembre',
-            '12' => 'Décembre'
+            '01' => 'JANVIER',
+            '02' => 'FÉVRIER',
+            '03' => 'MARS',
+            '04' => 'AVRIL',
+            '05' => 'MAI',
+            '06' => 'JUIN',
+            '07' => 'JUILLET',
+            '08' => 'AOÛT',
+            '09' => 'SEPTEMBRE',
+            '10' => 'OCTOBRE',
+            '11' => 'NOVEMBRE',
+            '12' => 'DÉCEMBRE'
         ];
 
         // Replace the month numbers with their French name
