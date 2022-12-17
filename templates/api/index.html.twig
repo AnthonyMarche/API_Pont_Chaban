@@ -20,24 +20,53 @@
         {{ form_end(form) }}
     </div>
 
-    {% for month, closuresInMonth in closuresByMonth %}
-        <h2>Fermetures du mois de {{ month }}</h2>
-
-        {% for closure in closuresInMonth %}
-            <div>
-                <h3>{{ closure.date_reformat }}</h3>
-
-                <p>Fermeture de la circulation de : {{ closure.fermeture_a_la_circulation }}</p>
-                <p>Réouverture à la circulation à : {{ closure.re_ouverture_a_la_circulation }}</p>
-                {% if closure.bateau == "MAINTENANCE" %}
-                    <p>Raison de la fermeture : {{ closure.bateau }}</p>
-                {% else %}
-                    <p>Raison de la fermeture : bateau "{{ closure.bateau }}"</p>
-                {% endif %}
-            </div>
-        {% else %}
-            <p>Aucune fermeture n'est prévue selon ces critères</p>
+    {% if closuresByMonth|length > 0 %}
+        {% for month, closuresInMonth in closuresByMonth %}
+            {% if closuresInMonth|length > 0 %}
+                <table class="table table-striped table-hover table-bordered text-center mx-auto">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th colspan="4">Fermetures du mois de {{ month }}</th>
+                    </tr>
+                    <tr class="thead-light">
+                        <th class="col-2">Date</th>
+                        <th class="col-3">Fermeture à la circulation</th>
+                        <th class="col-3">Réouverture à la circulation</th>
+                        <th class="col-4">Raison de la fermeture</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for closure in closuresInMonth %}
+                        <tr>
+                            <th scope="row" class="col-2">{{ closure.date_reformat }}</th>
+                            <td class="col-3">{{ closure.fermeture_a_la_circulation }}</td>
+                            <td class="col-3">{{ closure.re_ouverture_a_la_circulation }}</td>
+                            <td class="col-4">{{ closure.bateau }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
         {% endfor %}
-    {% endfor %}
+    {% else %}
+        <table class="table table-striped table-hover table-bordered text-center mx-auto">
+            <thead class="thead-dark">
+            <tr>
+                <th colspan="4">Fermetures</th>
+            </tr>
+            <tr class="thead-light">
+                <th class="col-2">Date</th>
+                <th class="col-3">Fermeture à la circulation</th>
+                <th class="col-3">Réouverture à la circulation</th>
+                <th class="col-4">Raison de la fermeture</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="4">Aucune fermeture n'est prévue selon ces critères</td>
+            </tr>
+            </tbody>
+        </table>
+    {% endif %}
 
 {% endblock %}

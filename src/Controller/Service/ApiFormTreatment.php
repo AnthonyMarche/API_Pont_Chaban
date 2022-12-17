@@ -4,7 +4,7 @@ namespace App\Controller\Service;
 
 class ApiFormTreatment
 {
-    private array $results;
+    private array $results = [];
 
     public function filterReasonSelected($reason, $closuresByMonth): array
     {
@@ -20,8 +20,10 @@ class ApiFormTreatment
                         $filteredMonth[] = $closure;
                     }
                 }
-                // get initial array format with closures filtered by reason
-                $this->results[$key] = $filteredMonth;
+                // get initial array format with closures filtered by reason if it exists
+                if ($filteredMonth) {
+                    $this->results[$key] = $filteredMonth;
+                }
             }
         }
         return $this->results;
@@ -43,8 +45,10 @@ class ApiFormTreatment
                         $filteredMonth[] = $closure;
                     }
                 }
-                // get initial array format with closures filtered by date
-                $this->results[$key] = $filteredMonth;
+                // get initial array format with closures filtered by date if it exists
+                if ($filteredMonth) {
+                    $this->results[$key] = $filteredMonth;
+                }
             }
         }
         return $this->results;
@@ -65,8 +69,10 @@ class ApiFormTreatment
                         $filteredMonth[] = $closure;
                     }
                 }
-                // get initial array format with closures filtered by reason and date
-                $this->results[$key] = $filteredMonth;
+                // get initial array format with closures filtered by reason and date if it exists
+                if ($filteredMonth) {
+                    $this->results[$key] = $filteredMonth;
+                }
             }
         }
         return $this->results;

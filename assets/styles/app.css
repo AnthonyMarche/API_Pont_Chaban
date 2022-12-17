@@ -5,3 +5,19 @@ body {
 .form-control {
     border: 1px solid black;
 }
+
+.table .thead-light th {
+    color: #eff2f3;
+    background-color: #6c757d;
+    border-color: #868686;
+    margin-bottom: 10vh;
+}
+
+.table {
+    margin-bottom: 5vh;
+    width: 90%
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.24);
+}
