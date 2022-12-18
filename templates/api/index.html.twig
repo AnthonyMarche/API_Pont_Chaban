@@ -3,8 +3,11 @@
 {% block title %}Fermetures Pont Chaban{% endblock %}
 
 {% block body %}
-
-    <h2>Date du jour : {{ today }}</h2>
+    <div>
+        <h1 class="title-pont-chaban">Fermetures du pont Chaban</h1>
+        <img src="{{ asset('build/images/pont-chaban-header.jpg') }}" alt="Pont chaban" class="img-header">
+    </div>
+    <h3>Date du jour : <span>{{ today }}</span></h3>
 
     <div class="mx-auto pb-3" style="width: 500px;">
         {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
