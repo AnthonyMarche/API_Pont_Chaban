@@ -24,7 +24,7 @@ It is possible to filter the data displayed:
 8. Go to `http://127.0.0.1:8000/` with your favorite browser.
 
 ---
-At the date of writing this ReadMe (12/18/2022), the data retrieved by the API begins at the beginning of 2022 and ends on 11/06/2022.
+At the date of writing this ReadMe (18/12/2022), the data retrieved by the API begins at the beginning of 2022 and ends on 11/06/2022.
 
 If you wish to have more data or less data, it is possible to change the dummy date by modifying the $today property in :  
 `/src/Controller/Service/apiData.php`
