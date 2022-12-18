@@ -2,32 +2,12 @@ body {
     background-color: #f1eeee;
 }
 
-.form-control {
-    border: 1px solid black;
-}
-
-.width-form {
-    width: 500px;
-}
-
-.width-control {
-    width: 100vw;
-}
-
-.table .thead-light th {
-    color: #eff2f3;
-    background-color: #6c757d;
-    border-color: #868686;
-    margin-bottom: 10vh;
-}
-
-.table {
-    margin-bottom: 5vh;
-    width: 90%
-}
-
-.table-hover tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.24);
+/* ----------------------------------------------- Header ----------------------------------------------------*/
+.title-pont-chaban {
+    text-align: center;
+    background-color: #212529;
+    color: #f1eeee;
+    margin: 0;
 }
 
 .img-header {
@@ -36,13 +16,7 @@ body {
     height: auto;
 }
 
-.title-pont-chaban {
-    text-align: center;
-    background-color: #212529;
-    color: #f1eeee;
-    margin: 0;
-}
-
+/* -------------------------------------------- Date section -------------------------------------------------*/
 .date-view {
     display: flex;
     justify-content: space-around;
@@ -58,4 +32,34 @@ body {
 
 #today, #nextClosure {
     display: none;
+}
+
+/* ------------------------------------------------- Form ---------------------------------------------------*/
+.form-control {
+    border: 1px solid black;
+}
+
+.width-form {
+    width: 500px;
+}
+
+.width-control {
+    width: 100vw;
+}
+
+/* ------------------------------------------------- Table ---------------------------------------------------*/
+.table .thead-light th {
+    color: #eff2f3;
+    background-color: #6c757d;
+    border-color: #868686;
+    margin-bottom: 10vh;
+}
+
+.table {
+    margin-bottom: 5vh;
+    width: 90%
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.24);
 }
