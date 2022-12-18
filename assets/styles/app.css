@@ -21,3 +21,21 @@ body {
 .table-hover tbody tr:hover {
     background-color: rgba(0, 0, 0, 0.24);
 }
+
+.img-header {
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.title-pont-chaban {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+h3 span {
+    font-weight: 700;
+}

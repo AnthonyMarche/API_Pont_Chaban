@@ -10,3 +10,10 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+import logoPath from './images/pont-chaban-black.svg';
+import headerImgPath from './images/pont-chaban-header.jpg';
+
+
+let html = `<img src="${logoPath}" alt="logo">`;
+let html1 = `<img src="${headerImgPath}" alt="pont-chaban">`;
