@@ -7,7 +7,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class ApiData
 {
     private HttpClientInterface $client;
-    private string $today = '2022-09-15';
+    private string $today = '2022-09-15 09:15:18';
 
     /**
      * @return string
@@ -127,5 +127,12 @@ class ApiData
         sort($closuresReason);
 
         return $closuresReason;
+    }
+
+    // build next closure with first 'date_passage' and first 'fermeture_a_la_circulation'
+    public function getNextClosure(): string
+    {
+        $closures = $this->getClosuresData();
+        return $closures[0]['date_passage'] . " " . $closures[0]['fermeture_a_la_circulation'];
     }
 }

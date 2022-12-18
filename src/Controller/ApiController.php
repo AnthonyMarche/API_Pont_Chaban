@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\Service\ApiData;
 use App\Controller\Service\ApiFormTreatment;
+use App\Controller\Service\Countdown;
 use App\Form\FilterApiType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,11 +17,14 @@ class ApiController extends AbstractController
     public function index(Request $request, ApiData $apiData, ApiFormTreatment $apiFormTreatment): Response
     {
         // get date today
-        $today = date('d/m/Y', strtotime($apiData->getToday()));
+        $today = $apiData->getToday();
 
         // get data from API
         $closuresByMonth = $apiData->sortByMonth();
         $closuresReason = $apiData->getClosuresReasonData();
+
+        // get next closure
+        $nextClosure = $apiData->getNextClosure();
 
         // Create form from FilterApiType
         $form = $this->createForm(FilterApiType::class, $closuresReason);
@@ -35,6 +39,7 @@ class ApiController extends AbstractController
 
         return $this->render('api/index.html.twig', [
             'today' => $today,
+            'nextClosure' => $nextClosure,
             'closuresByMonth' => $closuresByMonth,
             'form' => $form->createView(),
             'closuresReason' => $closuresReason
