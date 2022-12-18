@@ -1,21 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fermetures Pont Chaban{% endblock %}
+{% block title %}Fermetures Pont Chaban Delmas{% endblock %}
 
 {% block body %}
-    <div>
-        <h1 class="title-pont-chaban">Fermetures du pont Chaban</h1>
-        <img src="{{ asset('build/images/pont-chaban-header.jpg') }}" alt="Pont chaban" class="img-header">
+    <h1 class="title-pont-chaban">Fermetures du pont Chaban Delmas</h1>
+    <img src="{{ asset('build/images/pont-chaban-header.jpg') }}" alt="Pont Chaban Delmas" class="img-header">
+
+    <div class="date-view">
+        {% set date = date(today) %}
+        <p>Date du jour : <span class="data-date"> {{ date.format('d/m/Y') }}</span></p>
+
+        <div id="today">{{ today }}</div>
+        <div id="nextClosure">{{ nextClosure }}</div>
+        <p>Prochaine fermeture dans : <span id="countdown" class="data-date"></span></p>
     </div>
-    <h3>Date du jour : <span>{{ today }}</span></h3>
 
-    <div class="mx-auto pb-3" style="width: 500px;">
+    <div class="mx-auto pb-3 width-form">
         {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
-        {{ form_label(form.reason, 'Raison de fermeture :', {'label_attr': {'class': 'sr-only'}}) }}
-        {{ form_widget(form.reason, {'attr': {'class': 'form-control mb-2 mr-sm-2'}}) }}
+        {{ form_widget(form.reason, {'attr': {'class': 'form-control mb-2 mr-sm-2 width-control'}}) }}
 
-        {{ form_label(form.date, 'Date :', {'label_attr': {'class': 'sr-only'}}) }}
-        <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group mb-2 mr-sm-2 width-control">
             {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
         </div>
 

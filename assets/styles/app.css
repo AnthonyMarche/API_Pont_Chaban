@@ -1,9 +1,17 @@
 body {
-    background-color: white;
+    background-color: #f1eeee;
 }
 
 .form-control {
     border: 1px solid black;
+}
+
+.width-form {
+    width: 500px;
+}
+
+.width-control {
+    width: 100vw;
 }
 
 .table .thead-light th {
@@ -29,13 +37,25 @@ body {
 }
 
 .title-pont-chaban {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
+    text-align: center;
+    background-color: #212529;
+    color: #f1eeee;
+    margin: 0;
 }
 
-h3 span {
+.date-view {
+    display: flex;
+    justify-content: space-around;
+}
+
+.date-view p {
+    font-size: 1.6rem;
+}
+
+.data-date {
     font-weight: 700;
+}
+
+#today, #nextClosure {
+    display: none;
 }
