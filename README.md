@@ -21,7 +21,8 @@ It is possible to filter the data displayed:
 1. Clone the repo from Github.
 2. Run `composer install`.
 3. Run `symfony server:start`.
-8. Go to `http://127.0.0.1:8000/` with your favorite browser.
+4. Run `yarn dev-server`.
+5. Go to `http://127.0.0.1:8000/` with your favorite browser.
 
 ---
 At the date of writing this ReadMe (18/12/2022), the data retrieved by the API begins at the beginning of 2022 and ends on 11/06/2022.
