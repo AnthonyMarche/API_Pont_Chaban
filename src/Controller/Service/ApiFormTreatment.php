@@ -26,9 +26,9 @@ class ApiFormTreatment
                 }
             }
         }
+
         return $this->results;
     }
-
 
     // filter closures by date selected
     public function filterDateSelected($date, $closuresByMonth): array
@@ -51,6 +51,7 @@ class ApiFormTreatment
                 }
             }
         }
+
         return $this->results;
     }
 
@@ -75,6 +76,7 @@ class ApiFormTreatment
                 }
             }
         }
+
         return $this->results;
     }
 

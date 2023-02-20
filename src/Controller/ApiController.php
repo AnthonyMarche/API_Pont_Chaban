@@ -15,9 +15,6 @@ class ApiController extends AbstractController
     #[Route('/', name: 'app_index')]
     public function index(Request $request, ApiData $apiData, ApiFormTreatment $apiFormTreatment): Response
     {
-        // get date today
-        $today = $apiData->getToday();
-
         // get data from API
         $closuresByMonth = $apiData->sortByMonth();
         $closuresReason = $apiData->getClosuresReasonData();
@@ -37,7 +34,6 @@ class ApiController extends AbstractController
         }
 
         return $this->render('api/index.html.twig', [
-            'today' => $today,
             'nextClosure' => $nextClosure,
             'closuresByMonth' => $closuresByMonth,
             'form' => $form->createView(),
