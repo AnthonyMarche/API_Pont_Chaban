@@ -16,24 +16,6 @@ body {
     height: auto;
 }
 
-/* -------------------------------------------- Date section -------------------------------------------------*/
-.date-view {
-    display: flex;
-    justify-content: space-around;
-}
-
-.date-view p {
-    font-size: 1.6rem;
-}
-
-.data-date {
-    font-weight: 700;
-}
-
-#today, #nextClosure {
-    display: none;
-}
-
 /* ------------------------------------------------- Form ---------------------------------------------------*/
 .form-control {
     border: 1px solid black;

@@ -2,24 +2,18 @@
 
 namespace App\Controller\Service;
 
+use DateTime;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ApiData
 {
     private HttpClientInterface $client;
-    private string $today = '2022-09-15 09:15:18';
-
-    /**
-     * @return string
-     */
-    public function getToday(): string
-    {
-        return $this->today;
-    }
+    private DateTime $today;
 
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
+        $this->today = new DateTime();
     }
 
     // get all data from api
@@ -44,7 +38,7 @@ class ApiData
 
         // get only closures data from api start on $today
         foreach ($content['records'] as $closeData) {
-            if ($closeData['fields']['date_passage'] > $this->today) {
+            if (DateTime::createFromFormat('Y-m-d', $closeData['fields']['date_passage']) > $this->today) {
                 $closures[] = $closeData['fields'];
             }
         }
@@ -112,7 +106,7 @@ class ApiData
 
         // get only closures data from api start on $today
         foreach ($content['records'] as $closuresData) {
-            if ($closuresData['fields']['date_passage'] > $this->today) {
+            if (DateTime::createFromFormat('Y-m-d', $closuresData['fields']['date_passage']) > $this->today) {
 
                 // get all reasons to closure
                 $closuresReasonList = explode('/', $closuresData['fields']['bateau']);
@@ -130,9 +124,9 @@ class ApiData
     }
 
     // build next closure with first 'date_passage' and first 'fermeture_a_la_circulation'
-    public function getNextClosure(): string
+    public function getNextClosure(): DateTime
     {
         $closures = $this->getClosuresData();
-        return $closures[0]['date_passage'] . " " . $closures[0]['fermeture_a_la_circulation'];
+        return new DateTime($closures[0]['date_passage'] . " " . $closures[0]['fermeture_a_la_circulation']);
     }
 }

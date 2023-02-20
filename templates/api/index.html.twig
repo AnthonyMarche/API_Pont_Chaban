@@ -6,13 +6,11 @@
     <h1 class="title-pont-chaban">Fermetures du pont Chaban Delmas</h1>
     <img src="{{ asset('build/images/pont-chaban-header.jpg') }}" alt="Pont Chaban Delmas" class="img-header">
 
-    <div class="date-view">
-        {% set date = date(today) %}
-        <p>Date du jour : <span class="data-date"> {{ date.format('d/m/Y') }}</span></p>
+    <div class="d-flex justify-content-around fs-4">
+        <p>Date du jour : <span class="fw-bold" id="today"></span></p>
 
-        <div id="today">{{ today }}</div>
-        <div id="nextClosure">{{ nextClosure }}</div>
-        <p>Prochaine fermeture dans : <span id="countdown" class="data-date"></span></p>
+        <div id="nextClosure" class="d-none">{{ nextClosure.format('Y-m-d H:i:s') }}</div>
+        <p>Prochaine fermeture dans : <span id="countdown" class="fw-bold"></span></p>
     </div>
 
     <div class="mx-auto pb-3 width-form">
@@ -31,7 +29,7 @@
         {% for month, closuresInMonth in closuresByMonth %}
             {% if closuresInMonth|length > 0 %}
                 <table class="table table-striped table-hover table-bordered text-center mx-auto">
-                    <thead class="thead-dark">
+                    <thead class="table-dark">
                     <tr>
                         <th colspan="4">Fermetures du mois de {{ month }}</th>
                     </tr>
