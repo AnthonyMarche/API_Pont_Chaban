@@ -44,9 +44,17 @@ class ApiData
         }
 
         // order by "date_passage" then by "fermeture_a_la_circulation"
-        array_multisort(array_column($closures, "date_passage"),
-            array_column($closures, "fermeture_a_la_circulation"),
-            $closures);
+        array_multisort(
+            array_column(
+                $closures,
+                "date_passage"
+            ),
+            array_column(
+                $closures,
+                "fermeture_a_la_circulation"
+            ),
+            $closures
+        );
         // change date format foreach closure
         foreach ($closures as &$closure) {
             $closure['date_reformat'] = date('d/m/Y', strtotime($closure['date_passage']));
